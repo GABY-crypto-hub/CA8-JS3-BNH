@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Gabriella Kulondwa">
+  <title>Bear Ninja Hunter Game</title>
+  <link rel="stylesheet" href="index.css">
+
+</head>
+<body>
+  <h1> Bear Ninja Hunter</h1>
+  <p>Follow the prompts to play the game!</p>
+
+  <div id="results"></div>
+
+  <script>
+    const choices = ["bear", "ninja", "hunter"];
+    let playerName = "";
+    let playerChoice = "";
+    let computerChoice = "";
+    let playAgain = "yes";
+    let results = "";
+
+    playerName = prompt("Welcome to Bear Ninja Hunter! What is your name?");
+    if (!playerName) {
+      alert("You cancelled or didn’t type a name. Refresh to try again!");
+    } else {
+      alert("Hello " + playerName + "! Let's play!");
+
+      while (playAgain === "yes") {
+        playerChoice = prompt("Choose bear, ninja, or hunter:");
+
+        if (playerChoice === null) {
+          alert("Game cancelled. Refresh to start over!");
+          break;
+        }
+        playerChoice = playerChoice.trim().toLowerCase();
+
+        if (!choices.includes(playerChoice)) {
+          alert("Invalid choice! Please type bear, ninja, or hunter.");
+          break;
+        }
+
+        computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+        let result = "";
+        if (playerChoice === computerChoice) {
+          result = "It's a tie!";
+        } else if (
+          (playerChoice === "bear" && computerChoice === "ninja") ||
+          (playerChoice === "ninja" && computerChoice === "hunter") ||
+          (playerChoice === "hunter" && computerChoice === "bear")
+        ) {
+          result = playerName + " wins!";
+        } else {
+          result = "Computer wins!";
+        }
+
+        alert("You chose " + playerChoice + ".\nComputer chose " + computerChoice + ".\n" + result);
+        console.log(result);
+
+        results += playerName + " chose " + playerChoice + ", computer chose " + computerChoice + ". " + result + "<br>";
+
+        playAgain = prompt("Do you want to play again? (yes or no)");
+        if (playAgain === null) break;
+        playAgain = playAgain.trim().toLowerCase();
+      }
+
+      document.getElementById("results").innerHTML =
+        "<h2>Game Over</h2>" +
+        "<p><strong>Player:</strong> " + playerName + "</p>" +
+        "<p>" + results + "</p>";
+    }
+  </script>
+</body>
+</html>
+
