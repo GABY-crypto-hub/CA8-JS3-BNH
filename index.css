@@ -31,5 +31,9 @@ p {
   line-height: 1.6;
   text-align: left;
 }
-/
-#results h2 
+ 
+#results h2 {
+  margin-top: 0;
+  color: #0077ff;
+}
+
